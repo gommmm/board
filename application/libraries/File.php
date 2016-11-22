@@ -14,15 +14,15 @@ class File {
   }
 
   public function upload($file, $b_idx, $dir) {
-    $count = count($_FILES['b_file']['name']) - 1;
+    $count = count($file['b_file']['name']) - 1;
     $data = [];
 
     if($count > 0) {
         for($i=0; $i<$count; $i++) {
-          $b_filename = $_FILES['b_file']['name']["{$i}"];
-          $b_filesize = $_FILES['b_file']['size']["{$i}"];
-          $b_filetype = $_FILES['b_file']['type']["{$i}"];
-          $b_tmpfile = $_FILES['b_file']['tmp_name']["{$i}"];
+          $b_filename = $file['b_file']['name']["{$i}"];
+          $b_filesize = $file['b_file']['size']["{$i}"];
+          $b_filetype = $file['b_file']['type']["{$i}"];
+          $b_tmpfile = $file['b_file']['tmp_name']["{$i}"];
 
           $b_file = $dir.'/'.$b_idx.'_'.$b_filename;
 
@@ -30,7 +30,7 @@ class File {
               @unlink($b_file);
           }
           move_uploaded_file($b_tmpfile, $b_file);
-          chmod($b_file, 0666);
+          @chmod($b_file, 0666);
 
           $data["{$i}"] = [
             'b_idx' => $b_idx,

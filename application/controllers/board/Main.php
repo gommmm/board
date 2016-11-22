@@ -560,12 +560,16 @@ class Main extends MY_Controller
 
     public function delete() // 글삭제
     {
-        if($this->input->post('id_list') != null)
-          $b_idx = explode(',', $this->input->post('id_list'));
-        else
-          $b_idx = $this->segment[3];
-
         $bc_code = $this->segment[1];
+
+        if($this->input->post('id_list') != null) {
+          $b_idx = explode(',', $this->input->post('id_list'));
+        } else {
+          $b_idx = $this->segment[3];
+          $posting = select_writing($b_idx, $bc_code);
+          $writer = $posting['m_id'];
+        }
+
         $board_config = $this->menu_model->getMenuOne(['bc_code'=>$bc_code]);
 
         if ($this->session->userdata('user_level') != '') {
@@ -576,7 +580,7 @@ class Main extends MY_Controller
             $user_id = '';
         }
 
-        if ($user_level < 9 && $posting['m_id'] != $user_id) {
+        if ($user_level < 9 && $writer != $user_id) {
             alert('작성자가 다릅니다.');
         }
 
@@ -619,7 +623,7 @@ class Main extends MY_Controller
             'deleted' => 1
           ];
 
-          $this->comment_model->update($set, 'c_idx', $id);
+          $this->comment_model->update('comment', $set, 'c_idx', $id);
         } else {
           $comment = $this->comment_model->getCommentOne($id);
           $parent_id = $comment['p_idx'] != 0 ? $comment['p_idx'] : '';
@@ -631,7 +635,7 @@ class Main extends MY_Controller
           if(isset($parent_comment) && $parent_comment['deleted'] == 1)
             $id = [$parent_comment['c_idx'], $id];
 
-            $this->comment_model->delete('c_idx', $id);
+            $this->comment_model->delete('commnet', 'c_idx', $id);
         }
         /* 자식 댓글이 없으면 부모 댓글이냐 자식 댓글이냐에 따라서 댓글을 삭제하는데
            자식 댓글이면 부모 댓글 id값을 얻은 후 부모 댓글 정보를 받아와서 부모 댓글이
