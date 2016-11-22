@@ -1,0 +1,519 @@
+body {
+  overflow-y : scroll;
+}
+
+.title {
+  text-align : center;
+  font-size : 20px;
+}
+
+.container {
+  width: 970px;
+  max-width: none !important;
+}
+
+ul {
+	list-style : none;
+	margin : 0;
+	padding : 0;
+}
+
+/* 댓글 */
+.reply {
+	padding-left : 30px;
+}
+
+.re_p_nick {
+	font-size : 90%;
+	margin-right : 5px;
+}
+
+.re_p_nick a {
+	color : #A6A6A6;
+}
+
+/*
+.article {
+	padding-right: 5px;
+  padding-left: 5px;
+
+	float : left;
+}
+
+
+@media (max-width:500px) {
+  .article {
+    float: left;
+  }
+
+  .pc {
+    display : none;
+  }
+
+}
+
+@media (min-width:500px) and (max-width:700px) {
+  .article {
+      float: left;
+  }
+
+  .pc {
+    display: none;
+  }
+}
+*/
+
+
+.list-btn {
+	clear : both;
+}
+
+.mock_date .on, .mock_type .on {
+		background-color: gray;
+}
+
+li.on2 {
+	color: #3473c1;
+}
+
+form {
+	padding : 0 0;
+	margin : 0 0;
+}
+
+.mock_date {
+  margin-top : 2px;
+	width : 202px;
+  height : 187px;
+  font-size : 12px;
+	list-style : none;
+	border : 1px solid #BDBDBD;
+	cursor : pointer;
+}
+
+.mock_type {
+  margin-top : 2px;
+  margin-left : 90px;
+	width : 116px;
+  height : 97px;
+  font-size : 12px;
+	list-style : none;
+	border : 1px solid #BDBDBD;
+	cursor : pointer;
+}
+
+.mock_date li {
+  width : 200px;
+  height : 23px;
+}
+
+.select {
+	display: inline-block;
+  margin : 0;
+	width : 86px;
+  height : 20px;
+  font-size : 12px;
+	border : 1px solid #BDBDBD;
+	background:#fff url(../img/bu_arr_label.gif) no-repeat 100% 10%;
+	cursor : pointer;
+}
+
+.select-type {
+  display: inline-block;
+  margin : 0;
+	width : 116px;
+  height : 20px;
+  font-size : 12px;
+	border : 1px solid #BDBDBD;
+	background:#fff url(../img/bu_arr_label.gif) no-repeat 100% 10%;
+	cursor : pointer;
+}
+
+.mock_date .seljs_mover {
+  height : 47px;
+}
+
+.mock_date .seljs_mover fieldset{
+  width : 186px;
+  height : 41px;
+}
+
+.mock_date .seljs_mover label{
+  font-size : 12px;
+  width : 186px;
+  height : 19px;
+}
+
+.mock_date .seljs_mover .seljs_text{
+  display : inline-block;
+  padding : 1px 3px;
+  font-size : 11px;
+  width : 70px;
+  height : 17px;
+}
+
+.mock_date .seljs_mover .set_btn {
+  height : 18px;
+}
+
+.set_btn {
+	vertical-align : middle;
+}
+
+.list-search {
+  height : 21px;
+}
+
+.list-search .search {
+  display : inline-block;
+  padding : 2px 0 0 4px;
+  font-size : 12px;
+  width : 116px;
+  height : 20px;
+}
+
+.list-search .word {
+  display : inline-block;
+  padding : 0;
+  margin-bottom : 0;
+  width : 157px;
+  height : 21px;
+}
+
+.btn-search {
+  width : 42px;
+  height : 21px;
+}
+
+.indent {
+	padding-left : 10px;
+}
+
+ul#sortable li.on, ul.add_list li.on {
+	background-color:#D5D5D5;
+}
+
+ul.add_list, ul.ui-sortable {
+	cursor : pointer;
+}
+
+.add {
+	cursor : default;
+	width : 20px;
+	height : 20px;
+}
+
+.add.on {
+	cursor : pointer;
+}
+
+.grade {
+	margin : 0;
+	padding : 0;
+	width : 100px;
+	float : left;
+}
+
+.set_grade {
+	margin : 0;
+	padding : 0;
+	width : 324px;
+	float : left;
+}
+
+ul#sortable li p {
+	margin:0;
+	padding:0;
+}
+
+/* 게시판 쪽지보내기 게시물보기를 띄우기위한 css */
+td.nickname {
+	position: relative;
+}
+
+span.check {
+	color: red;
+}
+
+div.search {
+	height : 180px;
+}
+
+.msg tr th {
+	background-color : #f9f9f9;
+	border-right : 1px solid #ddd;
+}
+
+.list_menu {
+	margin : 0;
+}
+
+.list_menu li {
+	float: left;
+	padding : 5px;
+}
+
+a:link, a:visited, a:active, a:hover {
+	color : black;
+	text-decoration : none;
+}
+
+
+.list_menu li.on {
+	background-color : #d5d5d5;
+}
+
+.message_title {
+	margin : 10px 5px;
+}
+
+.msg_btn {
+	padding-left : 5px;
+	padding-top : 10px;
+}
+
+.msg_header {
+	padding-left : 5px;
+	margin-top : 10px;
+	margin-bottom : 20px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+	border-top : 1px solid #e8e8e8;
+	border-bottom : 1px solid #e8e8e8;
+}
+
+.msg_content {
+	padding-left : 5px;
+	padding-bottom : 40px;
+	border-bottom : 1px solid #e8e8e8;
+}
+
+.menu_box ul {
+	border : 1px solid #888;
+}
+
+.menu_box ul li {
+	padding : 3px 5px;
+	cursor : pointer;
+}
+
+.menu_box ul li:hover {
+	background-color: lightgray;
+}
+
+.menu_box ul li a:link, .menu_box ul li a:visited, .menu_box ul li a:hover {
+	color: black; text-decoration: none;
+}
+
+ul.menu>li {
+	padding-left : 5px;
+}
+
+.inbox {
+	padding-left : 20px;
+}
+
+.inbox h2 {
+	padding-bottom : 10px;
+}
+
+#c_content {
+	float:left;
+}
+
+.cmt_submit {
+	margin-left : 3px;
+	float:left;
+	width : 80px;
+	height : 50px;
+}
+
+.near_posts {
+	padding-top : 20px;
+	clear : both;
+}
+
+#cmtForm {
+	clear : both;
+}
+
+ul.c_list {
+	margin-top : 5px;
+}
+
+.c_list li {
+	clear : both;
+	margin-bottom : 3px;
+}
+
+li.reply form .cmt_submit {
+	margin-bottom : 7px;
+}
+
+.cmt_fix .cmt_submit, .cmt_fix textarea {
+	margin-top : 7px;
+	margin-bottom : 7px;
+}
+
+.btnReply.button {
+	margin-left : 4px;
+}
+
+.dashed {
+	margin-top : 0;
+	border-bottom: 1px dashed #BDBDBD;
+}
+
+.send_header {
+	border-top : 1px solid #e8e8e8;
+	border-bottom : 1px solid #e8e8e8;
+	padding : 5px 20px;
+	margin : 5px 0;
+}
+
+.s_content {
+	margin : 0 20px;
+	width : 580px;
+	height : 195px;
+
+}
+
+.send_btn {
+	text-align : center;
+}
+
+.add_group, .menu_list {
+	border :1px solid #BDBDBD;
+}
+
+.menu_description {
+	border-top :1px solid #BDBDBD;
+	border-bottom :1px solid #BDBDBD;
+	border-right :1px solid #BDBDBD;
+}
+
+.add_group {
+	height : 300px;
+}
+
+.menu_description {
+	height : 300px;
+	padding : 20px;
+}
+
+.btn_add {
+	position : relative;
+	height : 300px;
+}
+
+button.add {
+	position : absolute;
+	left : 50%;
+	margin : -12.5px;
+	top : 100px;
+	width : 25px;
+	height : 100px;
+}
+
+.btn_list {
+	font-size : 0;
+}
+
+button.tab, button.del {
+	font-size : 12px;
+}
+
+h1.title {
+	display : inline-block;
+  *display : inline;
+  *zoom : 1;
+}
+
+.sInput label {
+	width : 100px;
+}
+
+.l_label {
+	width : 75px;
+}
+
+.loginForm .pass {
+	margin-bottom : 5px;
+}
+
+.loginForm .button {
+	margin-bottom : 5px;
+}
+
+.registerForm .captcha {
+	margin-bottom : 5px;
+}
+
+.r_label {
+	width : 150px;
+}
+
+.del_parent{
+	color : red;
+}
+
+/* 댓글 박스 */
+.comment {
+  background-color: #f9f9f9;
+  padding-top : 14px;
+  padding-left : 15px;
+}
+
+/* 테이블 색상 */
+.msg thead, .msg th, .msg td , .article tr, .article th, .article td, .member tr, .member th, .member td  {
+  background-color: #FFFFFF;
+}
+
+.ipt {
+  height : 21px;
+}
+
+.set_grade select {
+  font-size : 16px;
+  height : 25px;
+  padding : 0 15px;
+}
+
+.memberLevel {
+  padding : 0;
+  height : 25px;
+}
+
+.btn_list .tab, .btn_list .del {
+  padding : 0;
+  margin : 0;
+  padding-right : 3px;
+  background-color : #F6F6F6;
+  color : #000000;
+  font-size : 14px;
+}
+
+.chat_log {
+  background-color: #d4e3e8;
+}
+
+.mymsg, .msg {
+  padding-top : 10px;
+  clear : both;
+}
+
+.msg .message {
+  word-wrap : break-word;
+  word-break : break-all;
+  float: left;
+  padding : 10px 15px 0 15px;
+  background-color : #ffffff;;
+}
+
+.mymsg .message {
+  word-wrap : break-word;
+  word-break : break-all;
+  float: right;
+  padding : 10px 15px 0 15px;
+  background-color: #a3cff4;
+}
