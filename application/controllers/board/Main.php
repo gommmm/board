@@ -472,6 +472,7 @@ class Main extends MY_Controller
             $b_idx = $this->input->post('b_idx');
             $bc_code = $this->input->post('bc_code');
             $m_name = $this->input->post('m_name');
+            $rereply = $this->input->post('rereply');
 
             $table = 'comment';
             $board = $this->board_model->select_writing($b_idx, $bc_code);
@@ -523,6 +524,7 @@ class Main extends MY_Controller
                      'c_regdate' => date('Y-m-d h:i:s'),
                      'p_idx' => isset($ref_id) ? $ref_id : '',
                      'cp_name' => isset($cp_name) ? $cp_name : '',
+                     'rereply' => $rereply
                     ];
 
             $this->comment_model->insert($table, $data);
@@ -566,7 +568,7 @@ class Main extends MY_Controller
           $b_idx = explode(',', $this->input->post('id_list'));
         } else {
           $b_idx = $this->segment[3];
-          $posting = select_writing($b_idx, $bc_code);
+          $posting = $this->board_model->select_writing($b_idx, $bc_code);
           $writer = $posting['m_id'];
         }
 
@@ -616,6 +618,8 @@ class Main extends MY_Controller
     public function deleteComment() { // 댓글삭제
         $id = $this->uri->segment(3);
         $child_count = $this->comment_model->getChildCommentCount($id);
+        $comment = $this->comment_model->getCommentOne($id);
+        $b_idx = $comment['b_idx'];
 
         // 자식 댓글이 있으면 실제로 테이블에서 데이터를 삭제하지 않고 deleted 컬럼의 값을 1로 설정해준다.
         if($child_count > 0) {
@@ -625,14 +629,14 @@ class Main extends MY_Controller
 
           $this->comment_model->update('comment', $set, 'c_idx', $id);
         } else {
-          $comment = $this->comment_model->getCommentOne($id);
           $parent_id = $comment['p_idx'] != 0 ? $comment['p_idx'] : '';
 
           if($parent_id !== '') {
             $parent_comment = $this->comment_model->getCommentOne($parent_id);
+            $child_count = $this->comment_model->getChildCommentCount($parent_id);
           }
 
-          if(isset($parent_comment) && $parent_comment['deleted'] == 1)
+          if($child_count == 1 && $parent_comment['deleted'] == 1)
             $id = [$parent_comment['c_idx'], $id];
 
             $this->comment_model->delete('commnet', 'c_idx', $id);
@@ -642,6 +646,8 @@ class Main extends MY_Controller
            삭제된 댓글인지 체크 후 부모 댓글이 삭제된 댓글이면 부모 댓글의 id값을 추가한 후
            같이 삭제해준다.
         */
+        
+        $this->board_model->updateCount($b_idx);
 
         alert('댓글을 삭제했습니다.', $this->referer);
     }

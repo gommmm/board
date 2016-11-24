@@ -54,7 +54,11 @@
 					<button class="btnDelete">삭제</button>
 					<?php endif; ?>
 				</div>
-				<p class="cmt"><?php if($comment['cp_name'] != '' && $comment['c_seq'] != 2) : ?><span class="re_p_nick"><a><?=$comment['cp_name']?></a></span><?php endif; ?><span class="content"><?=$comment['s_content'] ?></span></p>
+				<p class="cmt">
+				<?php if($comment['rereply']) : ?>
+				<span class="re_p_nick"><a><?=$comment['cp_name']?></a></span>
+			  <?php endif; ?>
+				<span class="content"><?=$comment['s_content'] ?></span></p>
 				<input type="hidden" name="cmt_id" value="<?=$comment['c_idx'] ?>" />
 				<input type="hidden" name="ref_id" value="<?=$comment['p_idx'] != 0 ? $comment['p_idx'] : $comment['c_idx'] ?>" />
 				<?php endif; ?>
@@ -68,6 +72,7 @@
 				<input type="hidden" name="bc_code" value="<?=$board_config['bc_code'] ?>" />
 				<input type="hidden" name="b_idx" value="<?=$board['b_idx'] ?>" />
 				<input type="hidden" id="m_name" name="m_name" value="<?=$this->session->userdata('user_name')?>" />
+				<input type="hidden" name="rereply" value="0" />
 				<div class="column row comment">
 				<div class="medium-10 columns">
 				<textarea id="c_content" name="c_content"></textarea>
@@ -126,7 +131,9 @@
 		return true;
 	}
 
-	$(document).on("submit", "form[name=commentForm]", function() {
+	$(document).on("submit", "form[name=commentForm]", function(e) {
+		e.preventDefault();
+		
 		var chk = formChk(this);
 
 		if(chk) {
@@ -145,6 +152,7 @@
 							+'<input type="hidden" name="bc_code" value="<?=$board_config['bc_code'] ?>" />'
 							+'<input type="hidden" name="b_idx" value="<?=$board['b_idx'] ?>" />'
 							+'<input type="hidden" name="m_name" id="m_name" value="<?=$this->session->userdata('user_name')?>" />'
+							+'<input type="hidden" name="rereply" value="0" />'
 							+'<div class="column row comment"><div class="medium-10 columns">'
 							+'<textarea name="c_content" id="c_content"></textarea></div>'
 							+'<div class="medium-2 columns">'
@@ -179,6 +187,7 @@
 		temp.next().find("input[name=cmt_id]").val(cmt_id); //
 
 		if(className == "reply") {
+			$("input[name=rereply]").val("1");
 			content_box = temp.next().find("textarea[name=c_content]");
 			name = temp.find(".name").text();
 			content = name + "님께 답글남기기";

@@ -45,7 +45,7 @@
 <!-- 임시 실시간 쪽지 알림 테스트 코드 -->
 <div class="popup" style="display:none; position: fixed; background: #f5e28c; right: 0; bottom: 0; z-index: 9999; width: 200px; height: 100px;">
   <a href="#" class="close">x</a>
-  <p>쪽지가 도착했습니다.</p>
+  <p><a class="message" href="#">쪽지가 도착했습니다.</a></p>
 </div>
 
 <script>
@@ -61,6 +61,8 @@ var url  = "<?=MAIN_URL?>"
     var y = (screen.height-640)/2;
 
     window.open('<?=MAIN_URL ?>/message', 'message', 'left='+ x +',top='+ y +',width=640,height=640');
+    $(".popup").hide();
+
     return false;
   })
 </script>
@@ -91,9 +93,11 @@ var url  = "<?=MAIN_URL?>"
             $(".popup").hide();
           });
 
-          socket.on('send id', function(id) {
-            if(user_id == id) {
-              $(".popup").slideDown(5000);
+          socket.on('send id', function(id_list) {
+            for(var i=0, id; id=id_list[i]; i++) {
+              if(user_id == id) {
+                $(".popup").slideDown(5000);
+              }
             }
           });
         });

@@ -52,7 +52,7 @@
 <script type="text/template" id="board">
 	<div>
 		<div class="row">
-			<div class="medium-2 columns">
+			<div class="medium-3 columns">
 					<p><strong>메뉴명</strong></p>
 			</div>
 			<div class="medium-6 columns end">
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="medium-2 columns">
+			<div class="medium-3 columns">
 					<p><strong>코드명</strong></p>
 			</div>
 			<div class="medium-6 columns end">
@@ -71,7 +71,7 @@
 			<div class="medium-2 columns">
 			<p class="title"><strong>형태</strong></p>
 			</div>
-			<div class="medium-4 columns">
+			<div class="medium-4 medium-offset-1 columns">
 			<label for="normal">일반게시판 <input type="radio"  name="board_type" id="normal" value="normal"></label>
 			</div>
 			<div class="medium-4 columns end">
@@ -82,7 +82,7 @@
 			<div class="medium-2 columns">
 				<p class="grade" ><strong>권한설정</strong></p>
 			</div>
-			<div class="medium-10 columns">
+			<div class="medium-8 medium-offset-1 columns end">
 				<ul class="set_grade" >
 					<div class="row">
 						<li>
@@ -486,7 +486,7 @@ $(document).on("change", "input[name=board_type], .write_level, .read_level, .co
 	var select_menu = $("#sortable li.on");
 	var id = select_menu.attr("id");
 	var minus_index = -($("#sortable li#-1").index(select_menu)+1);
-	var attribute = tag_name == "SELECT" ? "bc_" + $(this).attr("class") : "type";
+	var attribute = tag_name == "SELECT" ? "bc_" + $(this).attr("id") : "type";
 	var select_value = tag_name == "SELECT" ? $(this).find("option:selected").val() : $(this).val();
 
 	if(id == -1) {

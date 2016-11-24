@@ -20,6 +20,7 @@
 설치 요구조건
 ==========
 1. PHP 5.3.7 이상 필요
+2. mod_rewrite 필요
 2. GD Library 2.0 이상 필요
 3. Node.js 필요  
 

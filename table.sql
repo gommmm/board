@@ -92,7 +92,8 @@ CREATE TABLE `comment` (
   `s_content` text NOT NULL,
   `p_idx` int(11) NOT NULL,
   `cp_name` char(40) NOT NULL,
-  `deleted` int(11) NOT NULL
+  `deleted` int(11) NOT NULL,
+  `rereply` TINYINT(2) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

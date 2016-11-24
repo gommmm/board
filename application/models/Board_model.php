@@ -207,6 +207,12 @@ class Board_model extends My_Model
         $this->db->update($table, $data);
     }
 
+    public function updateCount($b_idx) {
+        $this->db->set('c_cnt', 'c_cnt-1', false);
+        $this->db->where('b_idx', $b_idx);
+        $this->db->update('board');
+    }
+
     // 삭제 예정 (My_model로 이동)
     public function delete($table, $where_c, $where_v)
     {

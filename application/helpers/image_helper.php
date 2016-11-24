@@ -31,7 +31,6 @@ function getImagePath($str) { // board 테이블의 content 내용에서 img 태
 
 function resizeImage($imgPath, $resizeImgPath, $resizeRate)
 {
-  var_dump("작동");
     if($resizeRate <= 0 || $resizeRate > 2) // - 배율은 문제가 있고, 2배 이상이면 너무 커지므로 미리 방지
         return false;
 

@@ -40,10 +40,9 @@ $(document).on("click", ".submit", function() {
         data:{"param" : param},
 				dataType:"json",
         success:function(receiverId){
-					console.log("client: "+receiverId);
 						if(receiverId != '') {
-	            alert("쪽지를 보냈습니다.");
 							socket.emit('send success', receiverId);
+	            alert("쪽지를 보냈습니다.");
 	            window.close();
 						}
         }

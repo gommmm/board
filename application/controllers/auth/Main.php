@@ -71,23 +71,27 @@ class Main extends MY_Controller {
 			$member = $this->member_model->isMember($where);
 
 			$authNo = rand(111111, 999999);
-      
-			$config = [];
-			$config['mailtype'] = "text";
-			$config['charset'] = "utf-8";
-			$config['protocol'] = "sendmail";
-      $config['wordwrap'] = TRUE;
 
+			$config = [];
+
+      // host, port, user, pass는 사용하는 메일에 맞게 지정하면 된다.
       /*
-			$config['smtp_host'] =
+      $config['mailtype'] = 'text';
+			$config['charset'] = 'utf-8';
+			$config['protocol'] = 'smtp';
+			$config['smtp_host'] = 'ssl://smtp.gmail.com';
 			$config['smtp_port'] = 465;
-			$config['smtp_user'] =
-			$config['smtp_pass'] =
+			$config['smtp_user'] = '';
+			$config['smtp_pass'] = '';
 			$config['smtp_timeout'] = 10;
 			$config['crlf'] = "\r\n";
 			$config['newline'] = "\r\n";
-      smtp 사용시 이 부분을 사용하면 된다.
       */
+
+			// smtp 사용을 원하지 않으면 윗부분을 주석 처리하고 이 부분을 주석해제하면 된다.
+			$config['mailtype'] = "text";
+			$config['charset'] = "utf-8";
+      $config['wordwrap'] = TRUE;
 
 			$this->email->initialize($config);
 			$this->email->from('admin@admin.com', '관리자');
@@ -95,8 +99,7 @@ class Main extends MY_Controller {
 			$this->email->subject('인증번호입니다.');
 			$this->email->message($authNo);
 
-			if($member != NULL) {
-				$this->email->send();
+			if($member != NULL && $this->email->send()) {
 				$this->session->set_userdata('authNo', $authNo);
 				echo 'success';
 			} else {

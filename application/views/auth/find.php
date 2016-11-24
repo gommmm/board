@@ -66,9 +66,8 @@
 					url:url,
 					data:data,
 					success:function(args){
-						console.log(args);
-						alert("인증번호를 발송했습니다.\n인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해주세요.");
 						if(args == "success") {
+							alert("인증번호를 발송했습니다.\n인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해주세요.");
 							$("#authNo").attr("disabled", false);
 						}
 					}
