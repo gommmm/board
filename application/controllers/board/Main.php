@@ -171,7 +171,7 @@ class Main extends MY_Controller
                         'm_id' => $this->session->userdata('user_id'),
                         'name' => $this->input->post('m_name'),
                         'title' => $this->input->post('b_title'),
-                        'content' => strip_particular_tags($this->input->post('b_content'), ['p']),
+                        'content' => strip_particular_tags($this->input->post('b_content'), ['p','script']),
                         's_content' => strip_tags($this->input->post('b_content')),
                         'b_regdate' => date('Y-m-d h:i:s'),
                         'notice' => $notice
@@ -273,7 +273,7 @@ class Main extends MY_Controller
                        'm_id' => $this->session->userdata('user_id'),
                        'name' => $this->input->post('m_name'),
                        'title' => $this->input->post('b_title'),
-                       'content' => strip_particular_tags($this->input->post('b_content'), ['p']),
+                       'content' => strip_particular_tags($this->input->post('b_content'), ['p','script']),
                        's_content' => strip_tags($this->input->post('b_content')),
                        'b_regdate' => date('Y-m-d h:i:s'),
                        'parent_id' => $b_idx,
@@ -383,7 +383,7 @@ class Main extends MY_Controller
         $table = 'board';
         $set = [
                 'title' => $this->input->post('b_title'),
-                'content' => strip_particular_tags($this->input->post('b_content'), ['p']),
+                'content' => strip_particular_tags($this->input->post('b_content'), ['p','script']),
                 's_content' => strip_tags($this->input->post('b_content')),
                 'notice' => $notice
                ];
@@ -646,7 +646,7 @@ class Main extends MY_Controller
            삭제된 댓글인지 체크 후 부모 댓글이 삭제된 댓글이면 부모 댓글의 id값을 추가한 후
            같이 삭제해준다.
         */
-        
+
         $this->board_model->updateCount($b_idx);
 
         alert('댓글을 삭제했습니다.', $this->referer);

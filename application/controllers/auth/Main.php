@@ -54,10 +54,18 @@ class Main extends MY_Controller {
 	}
 
 	public function logout() {
-	    $session_data = ['user_idx', 'user_id', 'user_name', 'user_level'];
-		  $this->session->unset_userdata($session_data);
-		  alert('로그아웃 하셨습니다', MAIN_URL);
-	}
+      if(!$this->session->userdata('user_id'))
+          alert('로그인 상태가 아닙니다.', $this->referer);
+
+      $timeout = $this->input->get('reason');
+
+      $session_data = ['user_idx', 'user_id', 'user_name', 'user_level'];
+      $this->session->unset_userdata($session_data);
+
+      if($timeout) alert('30분간 작업이 없어서 자동 로그아웃 합니다.', MAIN_URL);
+      else alert('로그아웃 하셨습니다', MAIN_URL);
+
+  }
 
 	public function find($email, $mode, $title, $userId=NULL) {
 		if($email != NULL) {
