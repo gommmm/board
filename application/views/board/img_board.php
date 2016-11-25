@@ -38,7 +38,7 @@
 			<a href="<?=MAIN_URL ?>/<?=$row['bc_code'] ?>/view/<?=$row['b_idx'] ?>">
 				<?php $src = getResizeSrc($row['content']); ?>
 				<?php if($src != '') : ?>
-				<img src=<?=$src?> class="thumbnail" style="height:100px">
+				<img src="<?=$src?>" class="thumbnail" style="height:100px">
 				<?php else : ?>
 				<div style="height:100px;position:relative;text-align:center;border:solid 1px #d9d9d9;">
 					<div style="position:absolute;left:0;right:0;top:50%;margin-top:-10px;color:#d9d9d9;">noimage</div>

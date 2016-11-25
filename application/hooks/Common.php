@@ -9,13 +9,12 @@ class Common
       $this->CI = & get_instance();
       $this->CI->load->library('session');
       $this->CI->load->helper('url');
-      $this->CI->load->model(['member_model','message_model','menu_model']);
     }
 
     function init()
     {
       if($this->CI->uri->segment(1) !== 'install') {
-
+        $this->CI->load->model(['member_model','message_model','menu_model']);
         // 불러올 컨텐츠 설정
         $directory = $this->CI->router->directory;
         $class = $this->CI->router->class;
@@ -36,7 +35,7 @@ class Common
             else
                 $this->CI->content = $page;
         } else {
-          $this->CI->board_name = '전체게시물';
+          $this->CI->board_name = '최근 등록한 게시물';
           $this->CI->content = 'latest';
         }
 
