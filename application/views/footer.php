@@ -4,7 +4,7 @@ var logout = function() { // 노출시 조작으로 인한 로그아웃을 할 �
   window.location="<?=MAIN_URL?>/logout?reason=timeout";
 }
 
-setTimeout(logout(), 1800000);
+setTimeout(logout, 1800000);
 </script>
 <?php endif; ?>
 </body>

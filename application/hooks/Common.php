@@ -9,6 +9,7 @@ class Common
       $this->CI = & get_instance();
       $this->CI->load->library('session');
       $this->CI->load->helper('url');
+      $this->CI->load->model(['member_model','message_model','menu_model']);
     }
 
     function init()
@@ -16,14 +17,13 @@ class Common
       if($this->CI->uri->segment(1) !== 'install') {
 
         // 불러올 컨텐츠 설정
-        $this->CI->load->model('menu_model');
-
         $directory = $this->CI->router->directory;
         $class = $this->CI->router->class;
         $method = $this->CI->router->method;
         $segment = $this->CI->segment;
         $code = !empty($segment) ? $segment[1] : '';
         $page = in_array($method, ['reply', 'modify']) ? 'write' : $method;
+        $id = $this->CI->session->userdata('user_id');
 
         $this->CI->menu_list = $this->CI->menu_model->getMenu();
 
@@ -56,13 +56,24 @@ class Common
             }
         }
 
+        // 새 메세지 수 가져오기
+        $data['msgCnt'] = $this->CI->message_model->getNewMessage($id);
+
         $this->CI->load->vars($data);
 
         // 로그인 하지 않았을 때 로그인이 필요한 페이지면 로그인 폼으로 리다이렉트
-        if(isset($this->CI->allow) && is_array($this->CI->allow) && in_array($this->CI->router->method, $this->CI->allow)) {
+        if(isset($this->CI->allow) && is_array($this->CI->allow) && in_array($method, $this->CI->allow)) {
           if($this->CI->session->userdata('user_id') == null)
               redirect(MAIN_URL."/login");
         }
+
+        // 중복 로그인 처리
+        $member = $this->CI->member_model->get_member($id);
+        $login_session = $this->CI->session->userdata('login_session');
+
+        if($method != 'logout')
+            if($login_session && ($member['login_session'] != $login_session))
+                redirect(MAIN_URL.'/logout?reason=multiLogin');
     }
 
    }

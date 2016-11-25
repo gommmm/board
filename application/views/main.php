@@ -3,7 +3,9 @@
     <?php if ($this->session->userdata('user_id')): ?>
     <a href="<?=MAIN_URL ?>/memberModify">정보수정</a>
     <a href="<?=MAIN_URL ?>/logout">로그아웃</a>
-    <a href="<?=MAIN_URL ?>/message" class="message">쪽지</a>
+    <a href="<?=MAIN_URL ?>/message" class="message">
+      쪽지 <strong><?=$msgCnt ? : ''?></strong>
+    </a>
     <?php if ($this->session->userdata('user_level') == 9) : ?>
     <a href="<?=MAIN_URL ?>/admin">관리자</a>
     <?php endif; ?>

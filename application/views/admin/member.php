@@ -13,7 +13,7 @@
 		</table>
 	</div>
 	<div class="row">
-		<div class="medium-1 columns">
+		<div class="medium-2 columns">
 			선택멤버를
 		</div>
 		<div class="medium-2 columns">

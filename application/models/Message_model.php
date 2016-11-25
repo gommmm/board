@@ -75,6 +75,16 @@ class Message_model extends My_Model {
 		return $result;
 	}
 
+  public function getNewMessage($id) {
+    $this->db->where('receiverId', $id);
+    $this->db->where('read_message', 0);
+    $this->db->select('count(*) as new');
+    $query = $this->db->get($this->table);
+    $result = $query->row_array();
+
+    return $result['new'];
+  }
+
 	public function updateRead($no) {
 		$message = $this->getMessage($no);
 

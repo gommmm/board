@@ -36,14 +36,22 @@ class Main extends MY_Controller {
 
 		  if($chk_data['m_idx'] != '') {
 		      if(password_verify($this->input->post('pass'), $chk_data['m_pass'])) {
+              $login_session = rand(111111, 999999);
 			        $data = [
 				          'user_idx' => $chk_data['m_idx'],
 					        'user_id' => $chk_data['m_id'],
 					        'user_name' => $chk_data['m_name'],
-					        'user_level' => $chk_data['m_level']
+					        'user_level' => $chk_data['m_level'],
+                  'login_session' => $login_session
               ];
+              $set = [
+                      'is_login' => 1,
+                      'login_session' => $login_session
+                     ];
 
               $this->session->set_userdata($data);
+              $this->member_model->update('member', $set, 'm_id', $chk_data['m_id']);
+
 				      alert('로그인 되었습니다.', $prev_url);
 			    } else {
 			        alert('비밀번호가 다릅니다.');
@@ -57,12 +65,18 @@ class Main extends MY_Controller {
       if(!$this->session->userdata('user_id'))
           alert('로그인 상태가 아닙니다.', $this->referer);
 
-      $timeout = $this->input->get('reason');
+      $reason = $this->input->get('reason');
+      $session_data = ['user_idx', 'user_id', 'user_name', 'user_level', 'login_session'];
 
-      $session_data = ['user_idx', 'user_id', 'user_name', 'user_level'];
+      $set = ['is_login' => 0];
+      if($reason != 'multiLogin')
+          $set['login_session'] = '';
+
+      $this->member_model->update('member', $set, 'm_id', $this->session->userdata['user_id']);
       $this->session->unset_userdata($session_data);
 
-      if($timeout) alert('30분간 작업이 없어서 자동 로그아웃 합니다.', MAIN_URL);
+      if($reason == 'timeout') alert('30분간 작업이 없어서 자동 로그아웃 합니다.', MAIN_URL);
+      elseif($reason == 'multiLogin') alert('다른곳에서 로그인을 해서 로그아웃 합니다.', MAIN_URL);
       else alert('로그아웃 하셨습니다', MAIN_URL);
 
   }
