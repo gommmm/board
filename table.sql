@@ -69,7 +69,6 @@ CREATE TABLE `comment` (
   `b_idx` int(11) NOT NULL,
   `m_id` varchar(12) NOT NULL,
   `name` varchar(10) NOT NULL,
-  `c_pass` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `c_regdate` datetime NOT NULL,
   `cp_idx` int(11) NOT NULL,
