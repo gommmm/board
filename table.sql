@@ -12,12 +12,8 @@ CREATE TABLE `board` (
   `b_reply` varchar(3) NOT NULL,
   `m_id` varchar(12) NOT NULL,
   `name` varchar(10) NOT NULL,
-  `b_pass` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `b_is_secret` tinyint(2) NOT NULL DEFAULT '0',
-  `b_filename` varchar(255) NOT NULL,
-  `b_filesize` int(11) NOT NULL DEFAULT '0',
   `b_cnt` int(11) NOT NULL DEFAULT '0',
   `b_regdate` datetime NOT NULL,
   `s_content` text NOT NULL,
@@ -35,20 +31,9 @@ CREATE TABLE `board_config` (
   `bc_idx` int(11) NOT NULL,
   `bc_code` varchar(50) NOT NULL,
   `bc_name` varchar(50) NOT NULL,
-  `bc_head_file` varchar(255) NOT NULL,
-  `bc_head` text NOT NULL,
-  `bc_tail_file` varchar(255) NOT NULL,
-  `bc_tail` text NOT NULL,
-  `bc_list_level` tinyint(2) NOT NULL DEFAULT '0',
   `bc_read_level` tinyint(2) NOT NULL DEFAULT '0',
   `bc_write_level` tinyint(2) NOT NULL DEFAULT '0',
-  `bc_reply_level` tinyint(2) NOT NULL DEFAULT '0',
   `bc_comment_level` tinyint(2) NOT NULL DEFAULT '0',
-  `bc_admin` text NOT NULL,
-  `bc_use_file` tinyint(2) NOT NULL DEFAULT '0',
-  `bc_use_secret` tinyint(2) NOT NULL DEFAULT '0',
-  `bc_use_reply` tinyint(2) NOT NULL DEFAULT '0',
-  `bc_use_comment` tinyint(2) NOT NULL DEFAULT '0',
   `type` char(20) NOT NULL,
   `indent` tinyint(2) NOT NULL,
   `seq` int(11) NOT NULL,
@@ -59,9 +44,9 @@ CREATE TABLE `board_config` (
 -- 테이블의 덤프 데이터 `board_config`
 --
 
-INSERT INTO `board_config` (`bc_idx`, `bc_code`, `bc_name`, `bc_head_file`, `bc_head`, `bc_tail_file`, `bc_tail`, `bc_list_level`, `bc_read_level`, `bc_write_level`, `bc_reply_level`, `bc_comment_level`, `bc_admin`, `bc_use_file`, `bc_use_secret`, `bc_use_reply`, `bc_use_comment`, `type`, `indent`, `seq`, `is_group`) VALUES
-(1, 'basic', '일반게시판', '', '', '', '', 0, 0, 1, 0, 1, '', 0, 0, 0, 0, 'normal', 0, 1, 0),
-(2, 'pic', '사진게시판', '', '', '', '', 0, 0, 1, 0, 1, '', 0, 0, 0, 0, 'image', 0, 2, 0);
+INSERT INTO `board_config` (`bc_idx`, `bc_code`, `bc_name`, `bc_read_level`, `bc_write_level`, `bc_comment_level`, `type`, `indent`, `seq`, `is_group`) VALUES
+(1, 'basic', '일반게시판', 0, 1, 1, 'normal', 0, 1, 0),
+(2, 'pic', '사진게시판', 0, 1, 1, 'image', 0, 2, 0);
 
 --
 -- 테이블 구조 `chat`
