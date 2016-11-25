@@ -118,7 +118,9 @@ CREATE TABLE `member` (
   `email` char(40) NOT NULL,
   `m_name` varchar(10) NOT NULL,
   `m_pass` varchar(100) NOT NULL,
-  `m_level` tinyint(2) NOT NULL DEFAULT '1'
+  `m_level` tinyint(2) NOT NULL DEFAULT '1',
+  `is_login` TINYINT(2) NOT NULL DEFAULT '0',
+  `login_session` CHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
