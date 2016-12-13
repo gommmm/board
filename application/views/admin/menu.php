@@ -176,33 +176,25 @@ $(document).on("click", ".add.on", function() {
 	}
 
 	var add_list_len = -($("#sortable li#-1").length);
+	var loc_index = -($("#sortable li#-1").index(loc)+1);
+	var temp_data = "";
+	var temp_data2 = "";
 
-	if(loc.attr("id") == -1) { // 추가된 메뉴 설정부분 기억하게 하기
-		var loc_index = -($("#sortable li#-1").index(loc)+1);
-		var temp_data = "";
-		var temp_data2 = "";
-
-
-		if(loc_index == add_list_len) {
-			menu_data[loc_index-1] = createMenuInfo(id, name, type);
-		} else {
-			for(i=loc_index; i>add_list_len; i--) {
-
-				if(i != loc_index) {
-					temp_data2 = menu_data[i-2];
-					menu_data[i-2] = temp_data;
-					temp_data = temp_data2;
-				} else {
-					temp_data = menu_data[i-2];
-					menu_data[i-2] = menu_data[i-1];
-				}
-			}
-
-			menu_data[loc_index-1] = createMenuInfo(id, name, type);
-
-		}
+	if(loc_index == add_list_len) {
+		menu_data[loc_index-1] = createMenuInfo(id, name, type);
 	} else {
-		menu_data[index] = createMenuInfo(id, name, type);
+		for(i=loc_index; i>add_list_len; i--) {
+			if(i != loc_index) {
+				temp_data2 = menu_data[i-2];
+				menu_data[i-2] = temp_data;
+				temp_data = temp_data2;
+			} else {
+				temp_data = menu_data[i-2];
+				menu_data[i-2] = menu_data[i-1];
+			}
+		}
+
+		menu_data[loc_index-1] = createMenuInfo(id, name, type);
 	}
 
 	loc.after(tag);
