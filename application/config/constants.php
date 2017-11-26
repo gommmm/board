@@ -86,7 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('HTTP', 'http://');
 define('ROOT_DIRECTORY', $_SERVER['DOCUMENT_ROOT']);
-define('SUB_DIRECTORY', '/board');
+define('SUB_DIRECTORY', '');
 
 define('MAIN_DIRECTORY', ROOT_DIRECTORY.SUB_DIRECTORY);
 define('NODE_PORT', 3000);

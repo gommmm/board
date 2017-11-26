@@ -1,3 +1,4 @@
 # 제외할 폴더
 upload/
 session/
+dbconfig.xml
